@@ -1,6 +1,6 @@
 <?php
 
-namespace TestSocialNetwork;
+namespace SocialNetwork;
 use JetBrains\PhpStorm\Pure;
 use PHPUnit\Framework\TestCase;
 use SocialNetwork\Follower;
