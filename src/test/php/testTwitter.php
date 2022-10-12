@@ -1,11 +1,16 @@
 <?php
 
-namespace SocialNetwork;
+namespace TestSocialNetwork;
 use JetBrains\PhpStorm\Pure;
 use PHPUnit\Framework\TestCase;
 use SocialNetwork\Follower;
 use SocialNetwork\SubscriberNotFoundException;
 use SocialNetwork\Twitter;
+
+use SocialNetwork\EmptyListOfSubscribersException;
+use SocialNetwork\SubscriberAlreadyExistsException;
+require '..\..\main\php\Twitter.php';
+require '..\..\main\php\Follower.php';
 
 require '..\..\..\vendor\autoload.php';
 
