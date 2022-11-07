@@ -16,7 +16,7 @@ class Twitter implements IObservable
         //TODO REVIEW NGY - Single Responsibility Principle
         //https://www.freecodecamp.org/news/solid-principles-single-responsibility-principle-explained
         //Your class already contains a method responsible to add, meeting business rules, followers. Use it !
-        $this->observers = $observers;
+        $this->subscribe($observers);
     }
 
     public function subscribe(array $observers):void
@@ -34,16 +34,18 @@ class Twitter implements IObservable
         //TODO REVIEW NGY - KISS Principle - Keep it as simple as simple
         //https://people.apache.org/~fhanik/kiss.html
         //Review the way your are checking the several cases (what happens when an exception is thrown ?)
-        if(count($this->observers)>0) {
-            if (in_array($observer, $this->observers, true)) {
-                $id = array_search($observer, $this->observers);
-                unset($this->observers[$id]);
-            }else{
-                throw new SubscriberNotFoundException();
-            }
-        }else{
+
+        if (count($this->observers) <= 0){
             throw new EmptyListOfSubscribersException();
         }
+
+        if (!in_array($observer, $this->observers, true)){
+            throw new SubscriberNotFoundException();
+        }
+
+        $id = array_search($observer, $this->observers);
+        unset($this->observers[$id]);
+
     }
 
     public function notifyObservers():void
