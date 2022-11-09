@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace SocialNetwork;
 
@@ -9,10 +9,11 @@ require 'IObservable.php';
 
 class Twitter implements IObservable
 {
-    protected array $observers = [];
+    private array $observers = array();
     protected array $twits = [];
 
-    public function __construct(array $observers = []){
+    public function __construct(array $observers = [])
+    {
         //TODO REVIEW NGY - Single Responsibility Principle
         //https://www.freecodecamp.org/news/solid-principles-single-responsibility-principle-explained
         //Your class already contains a method responsible to add, meeting business rules, followers. Use it !
