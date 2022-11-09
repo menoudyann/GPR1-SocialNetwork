@@ -49,6 +49,23 @@ class testTwitter extends TestCase
         $this->assertCount($expectedAmountOfObservers, $this->twitter->getObservers());
     }
 
+    public function test_constructor_InstantiationWithDuplicatedSubscribers_ThrowsException()
+    {
+        //given
+        //refer to Setup Method
+        $expectedAmountOfSubscriber = 15;
+        $followers = $this->generateObservers($expectedAmountOfSubscriber);
+        $followersWithDuplicate = array();
+        array_push($followersWithDuplicate, $followers[0]);
+
+        //when
+        //event is triggered directly by the assertion
+
+        //then
+        $this->expectException(SubscriberAlreadyExistsException::class);
+        $this->twitter = new Twitter($followersWithDuplicate);
+    }
+
     public function test_twits_AfterInstantiation_Success(){
         //given
         //refer to Before Each method
